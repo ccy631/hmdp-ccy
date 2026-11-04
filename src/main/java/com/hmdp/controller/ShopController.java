@@ -33,8 +33,10 @@ public class ShopController {
      */
     @GetMapping("/{id}")
     public Result queryShopById(@PathVariable("id") Long id) {
-        return Result.ok(shopService.getById(id));
+        // 直接调用自定义的 queryById 方法，它内部已经包装好了 Result 并处理了所有缓存逻辑
+        return shopService.queryById(id);
     }
+
 
     /**
      * 新增商铺信息
