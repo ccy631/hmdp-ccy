@@ -17,6 +17,23 @@ spring:
         max-idle: 10
         min-idle: 1
         time-between-eviction-runs: 10s
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      acks: all
+      retries: 3
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: hmdp-seckill-group
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.hmdp.entity,com.hmdp.dto"
+    listener:
+      ack-mode: manual_immediate
   jackson:
     default-property-inclusion: non_null # JSON处理时忽略非空字段
 mybatis-plus:
@@ -24,3 +41,12 @@ mybatis-plus:
 logging:
   level:
     com.hmdp: debug
+langchain4j:
+  open-ai:
+    chat-model:
+      # 推荐放到环境变量，避免明文写入仓库
+      api-key: ${LANGCHAIN4J_API_KEY:}
+      # 百炼/Qwen等OpenAI兼容网关可填到这里，例如：https://dashscope.aliyuncs.com/compatible-mode/v1
+      base-url: ${LANGCHAIN4J_BASE_URL:https://api.openai.com/v1}
+      model-name: ${LANGCHAIN4J_MODEL:gpt-4o-mini}
+      temperature: ${LANGCHAIN4J_TEMPERATURE:0.7}

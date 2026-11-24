@@ -78,6 +78,22 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <!-- 黑马点评原版 Spring Boot 2.3.x 对应 2.5.17.RELEASE -->
+            <!-- 如果你已经升级到了 Spring Boot 2.7.x，这里改填 2.8.11 -->
+            <version>2.5.17.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ben-manes.caffeine</groupId>
+            <artifactId>caffeine</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>dev.langchain4j</groupId>
+            <artifactId>langchain4j-open-ai-spring-boot-starter</artifactId>
+            <version>0.36.2</version>
+        </dependency>
     </dependencies>
 
     <build>
